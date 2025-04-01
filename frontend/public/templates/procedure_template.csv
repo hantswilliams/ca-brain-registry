@@ -1,0 +1,6 @@
+SnomedCode,ProcedureName,PerformedDate,Status,BodySite,Notes
+116004,MRI of brain,2023-05-15,completed,brain,T1 and T2 sequences with contrast
+429887008,CT scan of brain,2023-04-10,completed,brain,No contrast agent used
+308761002,Tumor resection,2023-06-22,completed,left temporal lobe,Gross total resection achieved
+10847001,Chemotherapy,2023-07-15,in-progress,,Cycle 2 of temozolomide
+33195004,Radiation therapy,2023-08-01,in-progress,brain,Fractionated stereotactic radiotherapy

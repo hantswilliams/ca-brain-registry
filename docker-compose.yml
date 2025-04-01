@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    container_name: hapi-fhir-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: 'hapi'
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'admin'
+    volumes:
+      - hapi-fhir-db:/var/lib/postgresql/data
+    networks:
+      - default
+    
+  hapi-server:
+    image: "hapiproject/hapi:latest"
+    container_name: hapi-server
+    environment:
+      - hapi.fhir.mdm_enabled=false
+      - spring.datasource.url=jdbc:postgresql://db:5432/hapi
+      - spring.datasource.username=admin
+      - spring.datasource.password=admin
+      - spring.datasource.driverClassName=org.postgresql.Driver
+      - spring.jpa.properties.hibernate.dialect=ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect
+      - hapi.fhir.bulk_export_enabled=true
+      # Performance optimization settings
+      - hapi.fhir.validation.enabled=false
+      - hapi.fhir.search_parameter_extraction.synchronized_with_writes=false
+      - spring.datasource.hikari.maximum-pool-size=20
+      - spring.datasource.hikari.minimum-idle=5
+      # Reduce search parameters indexing overhead
+      - hapi.fhir.expunge_enabled=true
+      - hapi.fhir.reuse_cached_search_results_millis=60000
+    restart: unless-stopped
+    ports:
+      - 8091:8080
+    networks:
+      - default
+
+  redis:
+    image: redis:latest
+    container_name: hapi-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - default
+  
+volumes:
+  hapi-fhir-db:
+  hapi-server:
+networks:
+  default:
+    driver: bridge

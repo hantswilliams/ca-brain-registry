@@ -1,0 +1,13 @@
+flask
+flask_sqlalchemy
+flask_migrate
+flask-cors
+celery
+redis
+requests
+python-dotenv
+pydantic
+flask-restx
+PyJWT
+pytest
+psycopg2-binary

@@ -1,0 +1,8 @@
+ObservationName,LoincCode,Value,Unit,UnitCode,Date
+Body Height,8302-2,180,cm,cm,2023-07-15
+Body Weight,29463-7,75,kg,kg,2023-07-15
+Body Mass Index,39156-5,23.1,kg/m2,kg/m2,2023-07-15
+Blood Pressure Systolic,8480-6,120,mmHg,mm[Hg],2023-07-15
+Blood Pressure Diastolic,8462-4,80,mmHg,mm[Hg],2023-07-15
+Heart Rate,8867-4,72,beats/min,/min,2023-07-15
+Temperature,8310-5,37,Cel,Cel,2023-07-15
